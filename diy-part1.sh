@@ -1,14 +1,13 @@
 #!/bin/bash
 #
 # diy-part1.sh — 在 feeds update 之前執行:加入第三方套件源
-# 目標:重現 yeung 版 TR3000-mod 全家桶(coolsnowwolf/lede 基底)
+# small8(kenzok8/small-package)已內含:istore/quickstart/linkease 全套 +
+# 代理全家桶(passwall/openclash/mosdns/adguardhome/alist/lucky/chinadns-ng/sing-box/xray ...)
+# 故只需這一個 feed。
+#
+# 注意:不要對 small8 做 `feeds install -f`(會用 small8 的 opkg/base-files 覆蓋核心,
+# 導致 opkg host build 規則消失而編譯失敗)。一律讓 workflow 的 `feeds install -a`
+# 自動跳過與核心同名的套件。
 #
 
-# iStore 生態(istore / quickstart / linkease / nas)— 對應原固件的 istore/nas/nas_luci feeds
-sed -i '$a src-git istore https://github.com/linkease/istore;main' feeds.conf.default
-sed -i '$a src-git nas https://github.com/linkease/nas-packages.git;master' feeds.conf.default
-sed -i '$a src-git nas_luci https://github.com/linkease/nas-packages-luci.git;main' feeds.conf.default
-
-# 全家桶代理/工具源(passwall / ssr-plus / openclash / mosdns / adguardhome / alist / lucky / chinadns-ng ...)
-# 對應原固件的 "third" feed
 sed -i '$a src-git small8 https://github.com/kenzok8/small-package' feeds.conf.default
