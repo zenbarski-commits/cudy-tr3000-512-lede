@@ -15,7 +15,9 @@ on:
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
-  REPO_BRANCH: master
+  # 釘到 20251001 tag:kernel 6.6 + 保留 opkg,對應原機 24.10/6.6 線
+  # (master 已前進到 kernel 6.12 並移除 opkg,與原機不符)
+  REPO_BRANCH: '20251001'
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
   DIY_P1_SH: diy-part1.sh
